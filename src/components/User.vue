@@ -17,11 +17,11 @@
       <div class="user-box2">
         <ul>
           <li v-for="topic in user.recent_topics" :key="topic.id">
-            <router-link :to="`/user/${topic.author.loginname}`">
+            <router-link :to="$publicUrl + `/user/${topic.author.loginname}`">
               <img :style="{width:'30px',hight:'30px'}" :src="topic.author.avatar_url" alt />
             </router-link>
 
-            <router-link class="txt" :to="`/topic/${topic.id}`">{{topic.title}}</router-link>
+            <router-link class="txt" :to="$publicUrl + `/topic/${topic.id}`">{{topic.title}}</router-link>
 
             <span class="time">{{myMoment(topic.last_reply_at)}}</span>
             <!-- <span class="sj">注册时间{{myMoment(user.create_at)}}</span> -->
@@ -31,11 +31,11 @@
       <div class="user-box3">
         <ul>
           <li v-for="topic in user.recent_replies" :key="topic.id">
-            <router-link :to="`/user/${topic.author.loginname}`">
+            <router-link :to="$publicUrl + `/user/${topic.author.loginname}`">
               <img :style="{width:'30px',hight:'30px'}" :src="topic.author.avatar_url" alt />
             </router-link>
 
-            <router-link class="txt" :to="`/topic/${topic.id}`">{{topic.title}}</router-link>
+            <router-link class="txt" :to="$publicUrl + `/topic/${topic.id}`">{{topic.title}}</router-link>
 
             <span class="time">{{myMoment(topic.last_reply_at)}}</span>
             <!-- <span class="sj">注册时间{{myMoment(user.create_at)}}</span> -->

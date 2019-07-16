@@ -36,7 +36,7 @@
       <p>{{topic.replies.length}}回复</p>
       <ul class="pinglun">
         <li v-for=" comment in topic.replies" :key="comment.id">
-          <router-link class="tx" :to="`/user/${topic.author.loginname}`">
+          <router-link class="tx" :to="$publicUrl + `/user/${comment.author.loginname}`">
             <img style="width:'30px',hight:'30px'" :src="comment.author.avatar_url" alt />
           </router-link>
           <span class="comment-pl" v-html="comment.content"></span>

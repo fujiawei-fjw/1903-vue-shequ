@@ -1,15 +1,15 @@
 <template>
   <div class="header">
     <div class="header-inner">
-      <router-link to="/" class="logo">
+      <router-link :to="$publicUrl + '/'" class="logo">
         <img src="https://www.vue-js.com/public/images/vue.png" alt />
         <h1>Vue.js</h1>
       </router-link>
-      <router-link to="/topic/create">
-        <div v-if="userInfo">发不话题</div>
+      <router-link :to="$publicUrl + '/topic/create'">
+        <div v-if="userInfo">发布话题</div>
       </router-link>
-      <router-link to="/topic/create">
-        <div>
+      <router-link :to="$publicUrl + '/topic/create'">
+        <div v-if="!shuliang">
           <span>{{shuliang}}</span> 未读消息
         </div>
       </router-link>
@@ -62,16 +62,31 @@ export default {
     "$route.fullPath": {
       immediate: true,
       handler() {
-        axios
-          .get(
-            `https://www.vue-js.com/api/v1/message/count?accesstoken=${sessionStorage.getItem(
-              "token"
-            )}`
-          )
-          .then(res => {
-            // console.log(res.data);
-            this.shuliang = res.data.data;
-          });
+        console.log(this.$publicUrl);
+
+        if (sessionStorage.getItem("token")) {
+          axios
+            .get(
+              `https://www.vue-js.com/api/v1/message/count?accesstoken=${sessionStorage.getItem(
+                "token"
+              )}`
+            )
+            .then(res => {
+              // console.log(res.data);
+              this.shuliang = res.data.data;
+            });
+        }
+
+        // axios
+        //   .get(
+        //     `https://www.vue-js.com/api/v1/message/count?accesstoken=${sessionStorage.getItem(
+        //       "token"
+        //     )}`
+        //   )
+        //   .then(res => {
+        //     // console.log(res.data);
+        //     this.shuliang = res.data.data;
+        //   });
       }
     }
   },
